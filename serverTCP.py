@@ -5,6 +5,10 @@ import logging
 
 logging.basicConfig(filename='TCP_server.log',level = logging.DEBUG,filemode='w')
 
+if len(sys.argv) != 3:
+	print('Usage: python3 serverTCP.py localIP port')
+	sys.exit(1)
+
 TCP_IP = sys.argv[1]
 TCP_PORT = int(sys.argv[2])
 
@@ -28,7 +32,14 @@ while True:
 	n_pac+=1
 	if delta > 1:
 		band = (n_pac * 8 * 1000)/delta
-		logging.info('%f bps',band)
+		if band > 10 ** 9:
+			logging.info('%f Gbps', band / 10 ** 9)
+		elif band < 10 ** 9 and band > 10 ** 6:
+			logging.info('%f Mbps', band / 10 ** 6)
+		elif band < 10 ** 6 and band > 10 ** 3:
+			logging.info('%f Kbps', band / 1000)
+		else:
+			logging.info('%f bps',band)
 		logging.info('endereco: %s',addr)
 		n_pac = 0
 		delta = 0
