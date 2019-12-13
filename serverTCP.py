@@ -2,8 +2,8 @@ import sys
 import socket
 import time
 import logging
-
-logging.basicConfig(filename='TCP_server.log',level = logging.DEBUG,filemode='w')
+time_actual = time.time()
+logging.basicConfig(filename='{}'.format(time_actual),level = logging.DEBUG,filemode='w')
 
 if len(sys.argv) != 3:
 	print('Usage: python3 serverTCP.py localIP port')
@@ -25,8 +25,7 @@ print('Endereco de conexao::', addr)
 while True:
 	t1 = time.time()
 	data = conn.recv(BUFFER_SIZE)
-	if not data: break
-	conn.send(data) # echo
+	if not data: break # echo
 	t2 = time.time()
 	delta += (t2-t1)
 	n_pac+=1

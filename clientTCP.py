@@ -15,4 +15,4 @@ s.connect((TCP_IP, TCP_PORT))
 
 while True:
 	s.send(MESSAGE)
-	data = s.recv(BUFFER_SIZE)
+	
