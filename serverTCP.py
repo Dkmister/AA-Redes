@@ -32,13 +32,13 @@ while True:
 	if delta > 1:
 		band = (n_pac * 8 * 1000)/delta
 		if band > 10 ** 9:
-			logging.info('%f Gbps', band / 10 ** 9)
+			logging.info('%f Gbps', 10 * band / 10 ** 9)
 		elif band < 10 ** 9 and band > 10 ** 6:
-			logging.info('%f Mbps', band / 10 ** 6)
+			logging.info('%f Mbps', 8 * band / 10 ** 6)
 		elif band < 10 ** 6 and band > 10 ** 3:
-			logging.info('%f Kbps', band / 1000)
+			logging.info('%f Kbps', 10 * band / 1000)
 		else:
-			logging.info('%f bps',band)
+			logging.info('%f bps',10 * band)
 		logging.info('endereco: %s',addr)
 		n_pac = 0
 		delta = 0
