@@ -1,4 +1,5 @@
 import sys
+import matplotlib.pyplot as plt
 
 if len(sys.argv)!=2:
 	print('Usage: python3 log_extract.py filename')
@@ -10,6 +11,8 @@ lst_band = []
 
 with open(filename,'r') as data:
 	for line in data.readlines():
-		lst_band.append(line[10::].rstrip())
+		lst_band.append(float(line[10::].rstrip()))
 
-print(lst_band)
+plt.plot(lst_band)
+plt.ylabel('Mbps')
+plt.show()
