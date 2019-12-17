@@ -3,7 +3,7 @@ import socket
 import time
 import logging
 time_actual = time.time()
-logging.basicConfig(filename='{}'.format(time_actual),level = logging.DEBUG,filemode='w')
+logging.basicConfig(filename='{}.log'.format(time_actual),level = logging.DEBUG,filemode='w')
 
 if len(sys.argv) != 3:
 	print('Usage: python3 serverTCP.py localIP port')
@@ -32,14 +32,14 @@ while True:
 	if delta > 1:
 		band = (n_pac * 8 * 1000)/delta
 		if band > 10 ** 9:
-			logging.info('%f Gbps', 10 * band / 10 ** 9)
+			print(band / 10 ** 9,'Gbps')
 		elif band < 10 ** 9 and band > 10 ** 6:
-			logging.info('%f Mbps', 8 * band / 10 ** 6)
+			print(band / 10 ** 6,'Mbps')
 		elif band < 10 ** 6 and band > 10 ** 3:
-			logging.info('%f Kbps', 10 * band / 1000)
+			print(band / 1000,'Kbps')
 		else:
-			logging.info('%f bps',10 * band)
-		logging.info('endereco: %s',addr)
+			print(band,'bps')
+		logging.info('%f',band)
 		n_pac = 0
 		delta = 0
 conn.close()
